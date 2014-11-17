@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CienerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Anexo">
+    <Key>
+      <PropertyRef Name="IDAnexo" />
+    </Key>
+    <Property Name="IDAnexo" Type="int" Nullable="false" />
+    <Property Name="Anexo" Type="varbinary(max)" Nullable="false" />
+    <Property Name="IDNoticia" Type="int" Nullable="false" />
+    <Property Name="IDTFicheiro" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comentario">
+    <Key>
+      <PropertyRef Name="IDComentario" />
+    </Key>
+    <Property Name="IDComentario" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Texto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IDNoticia" Type="int" Nullable="false" />
+    <Property Name="IDUtilizador" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Documento">
+    <Key>
+      <PropertyRef Name="IDDoc" />
+    </Key>
+    <Property Name="IDDoc" Type="int" Nullable="false" />
+    <Property Name="Doc" Type="varbinary(max)" Nullable="false" />
+    <Property Name="IDTFicheiro" Type="int" Nullable="false" />
+    <Property Name="IDPublicacao" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mensagem">
+    <Key>
+      <PropertyRef Name="IDMensagem" />
+    </Key>
+    <Property Name="IDMensagem" Type="int" Nullable="false" />
+    <Property Name="Texto" Type="nchar" MaxLength="4000" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="IDUtilizador" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Noticia">
+    <Key>
+      <PropertyRef Name="IDNoticia" />
+    </Key>
+    <Property Name="IDNoticia" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="IDUtilizador" Type="int" Nullable="false" />
+    <Property Name="IDTopico" Type="int" Nullable="false" />
+    <Property Name="IDPublicacao" Type="int" />
+  </EntityType>
+  <EntityType Name="Online">
+    <Key>
+      <PropertyRef Name="IDUtilizador" />
+    </Key>
+    <Property Name="IP" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IDUtilizador" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Publicacao">
+    <Key>
+      <PropertyRef Name="IDPublicacao" />
+    </Key>
+    <Property Name="IDPublicacao" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="Texto" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IDUtilizador" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TipoAcesso">
+    <Key>
+      <PropertyRef Name="IDTAcesso" />
+    </Key>
+    <Property Name="IDTAcesso" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoFicheiro">
+    <Key>
+      <PropertyRef Name="IDFicheiro" />
+    </Key>
+    <Property Name="IDFicheiro" Type="int" Nullable="false" />
+    <Property Name="TipoFicheiro" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Topico">
+    <Key>
+      <PropertyRef Name="IDTopico" />
+    </Key>
+    <Property Name="IDTopico" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descricao" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Utilizador">
+    <Key>
+      <PropertyRef Name="IDUtilizador" />
+    </Key>
+    <Property Name="IDUtilizador" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PNome" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UNome" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DataNasc" Type="date" />
+    <Property Name="ContactoTele" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactoMail" Type="nvarchar" MaxLength="100" />
+    <Property Name="Foto" Type="varbinary(max)" />
+    <Property Name="Curriculum" Type="varbinary(max)" />
+    <Property Name="IDAcesso" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Anexo_TipoFicheiro">
+    <End Role="TipoFicheiro" Type="Self.TipoFicheiro" Multiplicity="1" />
+    <End Role="Anexo" Type="Self.Anexo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoFicheiro">
+        <PropertyRef Name="IDFicheiro" />
+      </Principal>
+      <Dependent Role="Anexo">
+        <PropertyRef Name="IDTFicheiro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comentario_Noticia">
+    <End Role="Noticia" Type="Self.Noticia" Multiplicity="1" />
+    <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Noticia">
+        <PropertyRef Name="IDNoticia" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="IDNoticia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comentario_Utilizador">
+    <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+    <End Role="Comentario" Type="Self.Comentario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilizador">
+        <PropertyRef Name="IDUtilizador" />
+      </Principal>
+      <Dependent Role="Comentario">
+        <PropertyRef Name="IDUtilizador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documento_Publicacao">
+    <End Role="Publicacao" Type="Self.Publicacao" Multiplicity="1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publicacao">
+        <PropertyRef Name="IDPublicacao" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="IDPublicacao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Documento_TipoFicheiro">
+    <End Role="TipoFicheiro" Type="Self.TipoFicheiro" Multiplicity="1" />
+    <End Role="Documento" Type="Self.Documento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoFicheiro">
+        <PropertyRef Name="IDFicheiro" />
+      </Principal>
+      <Dependent Role="Documento">
+        <PropertyRef Name="IDTFicheiro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mensagem_Utilizador">
+    <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+    <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilizador">
+        <PropertyRef Name="IDUtilizador" />
+      </Principal>
+      <Dependent Role="Mensagem">
+        <PropertyRef Name="IDUtilizador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Noticia_Topico">
+    <End Role="Topico" Type="Self.Topico" Multiplicity="1" />
+    <End Role="Noticia" Type="Self.Noticia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topico">
+        <PropertyRef Name="IDTopico" />
+      </Principal>
+      <Dependent Role="Noticia">
+        <PropertyRef Name="IDTopico" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Online_Utilizador">
+    <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+    <End Role="Online" Type="Self.Online" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Utilizador">
+        <PropertyRef Name="IDUtilizador" />
+      </Principal>
+      <Dependent Role="Online">
+        <PropertyRef Name="IDUtilizador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Publicacao_Utilizador">
+    <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="1" />
+    <End Role="Publicacao" Type="Self.Publicacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Utilizador">
+        <PropertyRef Name="IDUtilizador" />
+      </Principal>
+      <Dependent Role="Publicacao">
+        <PropertyRef Name="IDUtilizador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Utilizador_TipoAcesso">
+    <End Role="TipoAcesso" Type="Self.TipoAcesso" Multiplicity="1" />
+    <End Role="Utilizador" Type="Self.Utilizador" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAcesso">
+        <PropertyRef Name="IDTAcesso" />
+      </Principal>
+      <Dependent Role="Utilizador">
+        <PropertyRef Name="IDAcesso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="CienerModelStoreContainer">
+    <EntitySet Name="Anexo" EntityType="Self.Anexo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comentario" EntityType="Self.Comentario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mensagem" EntityType="Self.Mensagem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Noticia" EntityType="Self.Noticia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Online" EntityType="Self.Online" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Publicacao" EntityType="Self.Publicacao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoAcesso" EntityType="Self.TipoAcesso" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoFicheiro" EntityType="Self.TipoFicheiro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topico" EntityType="Self.Topico" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Utilizador" EntityType="Self.Utilizador" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Anexo_TipoFicheiro" Association="Self.FK_Anexo_TipoFicheiro">
+      <End Role="TipoFicheiro" EntitySet="TipoFicheiro" />
+      <End Role="Anexo" EntitySet="Anexo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comentario_Noticia" Association="Self.FK_Comentario_Noticia">
+      <End Role="Noticia" EntitySet="Noticia" />
+      <End Role="Comentario" EntitySet="Comentario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comentario_Utilizador" Association="Self.FK_Comentario_Utilizador">
+      <End Role="Utilizador" EntitySet="Utilizador" />
+      <End Role="Comentario" EntitySet="Comentario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documento_Publicacao" Association="Self.FK_Documento_Publicacao">
+      <End Role="Publicacao" EntitySet="Publicacao" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Documento_TipoFicheiro" Association="Self.FK_Documento_TipoFicheiro">
+      <End Role="TipoFicheiro" EntitySet="TipoFicheiro" />
+      <End Role="Documento" EntitySet="Documento" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mensagem_Utilizador" Association="Self.FK_Mensagem_Utilizador">
+      <End Role="Utilizador" EntitySet="Utilizador" />
+      <End Role="Mensagem" EntitySet="Mensagem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Noticia_Topico" Association="Self.FK_Noticia_Topico">
+      <End Role="Topico" EntitySet="Topico" />
+      <End Role="Noticia" EntitySet="Noticia" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Online_Utilizador" Association="Self.FK_Online_Utilizador">
+      <End Role="Utilizador" EntitySet="Utilizador" />
+      <End Role="Online" EntitySet="Online" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publicacao_Utilizador" Association="Self.FK_Publicacao_Utilizador">
+      <End Role="Utilizador" EntitySet="Utilizador" />
+      <End Role="Publicacao" EntitySet="Publicacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Utilizador_TipoAcesso" Association="Self.FK_Utilizador_TipoAcesso">
+      <End Role="TipoAcesso" EntitySet="TipoAcesso" />
+      <End Role="Utilizador" EntitySet="Utilizador" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

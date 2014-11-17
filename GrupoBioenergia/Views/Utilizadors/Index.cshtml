@@ -1,0 +1,87 @@
+﻿@model IEnumerable<GrupoBioenergia.Utilizador>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UNome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactoTele)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactoMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Curriculum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Online.IP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoAcesso.Tipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UNome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataNasc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactoTele)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactoMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Foto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Curriculum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Online.IP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoAcesso.Tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDUtilizador }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDUtilizador }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDUtilizador })
+        </td>
+    </tr>
+}
+
+</table>
