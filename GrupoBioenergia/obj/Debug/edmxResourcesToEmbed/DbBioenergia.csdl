@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="IDAnexo" />
     </Key>
-    <Property Name="IDAnexo" Type="Int32" Nullable="false" />
+    <Property Name="IDAnexo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Anexo1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="IDNoticia" Type="Int32" Nullable="false" />
     <Property Name="IDTFicheiro" Type="Int32" Nullable="false" />
@@ -14,7 +14,7 @@
     <Key>
       <PropertyRef Name="IDComentario" />
     </Key>
-    <Property Name="IDComentario" Type="Int32" Nullable="false" />
+    <Property Name="IDComentario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="IDNoticia" Type="Int32" Nullable="false" />
@@ -26,7 +26,7 @@
     <Key>
       <PropertyRef Name="IDDoc" />
     </Key>
-    <Property Name="IDDoc" Type="Int32" Nullable="false" />
+    <Property Name="IDDoc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Doc" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="IDTFicheiro" Type="Int32" Nullable="false" />
     <Property Name="IDPublicacao" Type="Int32" Nullable="false" />
@@ -37,7 +37,7 @@
     <Key>
       <PropertyRef Name="IDMensagem" />
     </Key>
-    <Property Name="IDMensagem" Type="Int32" Nullable="false" />
+    <Property Name="IDMensagem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Texto" Type="String" MaxLength="4000" FixedLength="true" Unicode="true" />
     <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="IDUtilizador" Type="Int32" Nullable="false" />
@@ -47,7 +47,7 @@
     <Key>
       <PropertyRef Name="IDNoticia" />
     </Key>
-    <Property Name="IDNoticia" Type="Int32" Nullable="false" />
+    <Property Name="IDNoticia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="IDUtilizador" Type="Int32" Nullable="false" />
@@ -68,7 +68,7 @@
     <Key>
       <PropertyRef Name="IDPublicacao" />
     </Key>
-    <Property Name="IDPublicacao" Type="Int32" Nullable="false" />
+    <Property Name="IDPublicacao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -90,7 +90,7 @@
     <Key>
       <PropertyRef Name="IDTAcesso" />
     </Key>
-    <Property Name="IDTAcesso" Type="Int32" Nullable="false" />
+    <Property Name="IDTAcesso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Utilizador" Relationship="Self.FK_Utilizador_TipoAcesso" FromRole="TipoAcesso" ToRole="Utilizador" />
   </EntityType>
@@ -98,7 +98,7 @@
     <Key>
       <PropertyRef Name="IDFicheiro" />
     </Key>
-    <Property Name="IDFicheiro" Type="Int32" Nullable="false" />
+    <Property Name="IDFicheiro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TipoFicheiro1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Anexo" Relationship="Self.FK_Anexo_TipoFicheiro" FromRole="TipoFicheiro" ToRole="Anexo" />
     <NavigationProperty Name="Documento" Relationship="Self.FK_Documento_TipoFicheiro" FromRole="TipoFicheiro" ToRole="Documento" />
@@ -107,7 +107,7 @@
     <Key>
       <PropertyRef Name="IDTopico" />
     </Key>
-    <Property Name="IDTopico" Type="Int32" Nullable="false" />
+    <Property Name="IDTopico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Noticia" Relationship="Self.FK_Noticia_Topico" FromRole="Topico" ToRole="Noticia" />
@@ -116,7 +116,7 @@
     <Key>
       <PropertyRef Name="IDUtilizador" />
     </Key>
-    <Property Name="IDUtilizador" Type="Int32" Nullable="false" />
+    <Property Name="IDUtilizador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="PNome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="UNome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
