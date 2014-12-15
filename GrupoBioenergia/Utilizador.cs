@@ -11,7 +11,9 @@ namespace GrupoBioenergia
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Utilizador
     {
         public Utilizador()
@@ -27,6 +29,8 @@ namespace GrupoBioenergia
         public string UNome { get; set; }
         public Nullable<System.DateTime> DataNasc { get; set; }
         public string ContactoTele { get; set; }
+
+        [DisplayName("Email")]
         public string ContactoMail { get; set; }
         public byte[] Foto { get; set; }
         public byte[] Curriculum { get; set; }
